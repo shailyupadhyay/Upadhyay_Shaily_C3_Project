@@ -1,11 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -60,7 +58,19 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
-   }
+    }
+
+    //New Test Case to check if the total cost of all the items in the menu is equal to sum of the price of all the items
+    // Passing Test Case
+    @Test
+    public void selecting_items_from_menu_and_checking_if_the_total_cost_is_equal_to_the_sum_of_price_of_all_items_added_in_the_menu(){
+        List<String> selectedItems = new ArrayList<>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
+        int totalCost = restaurant.getTotalCostOfItems(selectedItems);
+        assertEquals(totalCost,388);
+    }
+
     // Failing Test Case
     @Test
     public void selecting_items_from_menu_and_checking_if_the_total_cost_is_not_equal_to_the_sum_of_price_of_all_items_added_in_the_menu(){
@@ -70,7 +80,6 @@ class RestaurantTest {
         int totalCost = restaurant.getTotalCostOfItems(selectedItems);
         assertNotEquals(totalCost,550);
     }
-
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
 
