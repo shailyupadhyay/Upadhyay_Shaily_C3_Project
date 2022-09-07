@@ -67,5 +67,20 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+
+    //Method to compute Cost of all the Menu Items in a restaurant
+    public int getTotalCostOfItems(List<String> selectedItems){
+        List<Item> itemsname = getMenu();
+        int totalCost = 0;
+        for(Item i:itemsname) {
+            for (String itemname : selectedItems) {
+                if(i.getName()==itemname){
+                    totalCost = totalCost +i.getPrice();
+                }
+            }
+        }
+        return totalCost;
+    }
+
 }
 
